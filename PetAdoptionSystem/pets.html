@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption Center - Available Pets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside>
+        <h2>Pet Portal</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="adopters.html">Adopters & Adoptions</a>
+        <a href="pets.html" class="active">Available Pets</a>
+        <a href="pet_profile.html">QR Pet Profile</a>
+        <a href="health.html">Health Records</a>
+        <div class="nav-spacer"></div>
+        <a href="login.html" class="logout-btn">Log Out</a>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <h1>Available Pets Directory</h1>
+                <p>Logged in as: <span id="user-role">Admin</span></p>
+            </div>
+        </header>
+
+        <!-- Add New Rescued Pet Form Section -->
+        <section class="form-card">
+            <h3 class="form-card-title">Add New Rescued Pet</h3>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="pet_name">Pet Name:</label>
+                        <input type="text" id="pet_name" name="pet_name" placeholder="e.g. Max" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="species">Species:</label>
+                        <div class="select-wrapper">
+                            <select id="species" name="species" required>
+                                <option value="Dog">Dog</option>
+                                <option value="Cat">Cat</option>
+                                <option value="Rabbit">Rabbit</option>
+                                <option value="Hamster">Hamster</option>
+                                <option value="Bird">Bird</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="breed">Breed:</label>
+                        <input type="text" id="breed" name="breed" placeholder="e.g. Golden Retriever" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="text" id="age" name="age" placeholder="e.g. 2 Years" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex">Sex:</label>
+                        <div class="select-wrapper">
+                            <select id="sex" name="sex" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pet_status">Status:</label>
+                        <div class="select-wrapper">
+                            <select id="pet_status" name="pet_status">
+                                <option value="Available">Available</option>
+                                <option value="Pending Adoption">Pending Adoption</option>
+                                <option value="Under Treatment">Under Treatment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label for="pet_photo">Upload Rescued Pet Photo:</label>
+                        <input type="file" id="pet_photo" name="pet_photo" accept="image/*" style="padding: 10px; background: var(--bg-color); box-shadow: var(--neu-pressed); border-radius: var(--radius);">
+                    </div>
+
+                    <div class="form-group span-2">
+                        <button type="submit" class="btn btn-primary btn-block">+ Add Rescued Pet to Roster</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Available Pets Table -->
+        <h2>Available Pets Roster</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all-pets"></th>
+                    <th>Pet ID</th>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>P-101</td>
+                    <td>Bruno</td>
+                    <td>Dog</td>
+                    <td>Aspin</td>
+                    <td>1 Year</td>
+                    <td>Male</td>
+                    <td><span class="badge badge-success">Available</span></td>
+                    <td><button class="btn" style="padding: 6px 12px; font-size: 0.85rem;">View</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>P-102</td>
+                    <td>Luna</td>
+                    <td>Cat</td>
+                    <td>Puspin</td>
+                    <td>8 Months</td>
+                    <td>Female</td>
+                    <td><span class="badge badge-success">Available</span></td>
+                    <td><button class="btn" style="padding: 6px 12px; font-size: 0.85rem;">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="table-actions">
+            <button class="btn" onclick="location.reload()">🔄 Refresh</button>
+            <button class="btn btn-danger">🗑️ Delete Selected</button>
+        </div>
+    </main>
+
+</body>
+</html>

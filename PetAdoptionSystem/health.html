@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption Center - Health Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside>
+        <h2>Pet Adoption Portal</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="pets.html">Available Pets</a>
+        <a href="pet_profile.html">QR Pet Profile</a>
+        <a href="health.html" class="active">Health Monitoring</a>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Health Monitoring</h1>
+            
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Health Records</h3>
+                <p>0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Up-to-Date Vaccinations</h3>
+                <p>0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Active Treatments</h3>
+                <p>0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pending Examinations</h3>
+                <p>0</p>
+            </div>
+        </div>
+
+        <h2>Veterinary Health Records</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Record ID</th>
+                    <th>Pet ID</th>
+                    <th>Checkup Type</th>
+                    <th>Veterinarian</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- paki insert db dto -->
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>

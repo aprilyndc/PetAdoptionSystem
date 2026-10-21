@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption System - Adopters & Adoptions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside>
+        <h2>Pet Portal</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="adopters.html" class="active">Adopters & Adoptions</a>
+        <a href="pets.html">Available Pets</a>
+        <a href="pet_profile.html">QR Pet Profile</a>
+        <a href="health.html">Health Records</a>
+        <div class="nav-spacer"></div>
+        <a href="login.html" class="logout-btn">Log Out</a>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <h1>Adoption Management</h1>
+                <p>Logged in as: <span id="user-role">Admin</span></p>
+            </div>
+        </header>
+
+        <!-- Add New Adopter Form Section (Matched to Reference) -->
+        <section class="form-card">
+            <h3 class="form-card-title">Add New Adopter</h3>
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_no">Contact No:</label>
+                        <input type="text" id="contact_no" name="contact_no" placeholder="0917XXXXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" placeholder="City / Province" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <div class="select-wrapper">
+                            <select id="status" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Add Adopter</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Registered Adopters Table -->
+        <h2>Registered Adopters & Applications</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>Adopter ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>Maria</td>
+                    <td>Santos</td>
+                    <td>09171234567</td>
+                    <td>maria.santos@gmail.com</td>
+                    <td>Quezon City, Metro Manila</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>2</td>
+                    <td>John</td>
+                    <td>Dela Cruz</td>
+                    <td>09182345678</td>
+                    <td>john.delacruz@gmail.com</td>
+                    <td>Makati City, Metro Manila</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>3</td>
+                    <td>Angela</td>
+                    <td>Reyes</td>
+                    <td>09193456789</td>
+                    <td>angela.reyes@yahoo.com</td>
+                    <td>Pasig City, Metro Manila</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="table-actions">
+            <button class="btn" onclick="location.reload()">🔄 Refresh</button>
+            <button class="btn btn-danger">🗑️ Delete Selected</button>
+        </div>
+    </main>
+
+</body>
+</html>
