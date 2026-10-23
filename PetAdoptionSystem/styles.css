@@ -17,7 +17,6 @@
     --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Fixed selector syntax error */
 * {
     box-sizing: border-box;
 }
@@ -37,6 +36,11 @@ body {
 
 aside h2, header h1, main > h2, .profile-details h2, .chart-header h2, .form-card-title, .login-header h2 {
     font-family: 'Outfit', sans-serif;
+}
+
+/* ==================== RBAC UTILITY ==================== */
+.rbac-hidden {
+    display: none !important;
 }
 
 /* ==================== SIDEBAR ==================== */
@@ -75,7 +79,7 @@ aside a {
     color: var(--text-color);
     text-decoration: none;
     padding: 14px 20px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     border-radius: var(--radius);
     font-size: 0.95rem;
     font-weight: 600;
@@ -140,7 +144,7 @@ header {
     padding: 48px 36px; 
     background: 
         linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(37, 99, 235, 0.75) 100%),
-        url('pets-header-bg.png') center/cover no-repeat;
+        url('pets-header-bg.jpg') center/cover no-repeat;
     border-radius: 20px;
     box-shadow: var(--neu-flat);
     color: white;
@@ -149,7 +153,7 @@ header {
 }
 
 header h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: #ffffff;
     margin: 0;
@@ -256,8 +260,9 @@ input:focus, select:focus {
 }
 
 .select-wrapper::after {
-    content: "▼";
-    font-size: 0.7rem;
+    content: "v";
+    font-size: 0.75rem;
+    font-weight: bold;
     color: var(--primary-color);
     position: absolute;
     right: 18px;
@@ -331,14 +336,14 @@ button:active, .btn:active {
 /* ==================== STATS & CHARTS ==================== */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 26px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 22px;
     margin-bottom: 34px;
 }
 
 .stat-card {
     background: var(--bg-color);
-    padding: 26px 24px;
+    padding: 24px 20px;
     border-radius: 20px;
     box-shadow: var(--neu-flat);
     transition: var(--transition);
@@ -360,7 +365,7 @@ button:active, .btn:active {
 
 .stat-card p {
     margin: 0;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: var(--primary-color);
     letter-spacing: -0.03em;
@@ -500,7 +505,7 @@ table.data-table {
 }
 
 table.data-table th, table.data-table td {
-    padding: 18px 22px;
+    padding: 16px 20px;
     text-align: left;
     vertical-align: middle;
 }
@@ -551,8 +556,8 @@ table.data-table tbody tr:last-child td {
 }
 
 .qr-box {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: var(--radius);
     display: flex;
     align-items: center;
@@ -561,14 +566,16 @@ table.data-table tbody tr:last-child td {
     color: var(--text-muted);
     font-size: 0.92rem;
     font-weight: 700;
-    background: var(--bg-color);
+    background: #ffffff;
     flex-shrink: 0;
     box-shadow: var(--neu-pressed-deep);
     transition: var(--transition);
+    padding: 12px;
 }
 
-.qr-box:hover {
-    color: var(--primary-color);
+.qr-box img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .profile-details {
@@ -592,7 +599,7 @@ table.data-table tbody tr:last-child td {
 .profile-details p strong {
     color: var(--text-muted);
     display: inline-block;
-    min-width: 150px;
+    min-width: 160px;
 }
 
 /* ==================== LOGIN PAGE ==================== */
@@ -620,7 +627,9 @@ body.login-page {
 }
 
 .login-icon {
-    font-size: 2.8rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary-color);
     width: 76px;
     height: 76px;
     margin: 0 auto 16px;
@@ -661,9 +670,6 @@ body.login-page {
     aside h2 {
         font-size: 0.7rem;
         padding: 8px 4px;
-    }
-    aside a span {
-        display: none;
     }
     aside a {
         padding: 12px;

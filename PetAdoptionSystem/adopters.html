@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Adoption System - Adopters & Adoptions</title>
+    <title>Pet Adoption Center - Adopters & Applications</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <aside>
         <h2>Pet Portal</h2>
-        <a href="index.html">Dashboard</a>
-        <a href="adopters.html" class="active">Adopters & Adoptions</a>
+        <a href="index.html" class="nav-dashboard">Dashboard</a>
         <a href="pets.html">Available Pets</a>
+        <a href="adopters.html" class="active">Adopters & Applications</a>
+        <a href="health.html" class="nav-health">Health Records</a>
         <a href="pet_profile.html">QR Pet Profile</a>
-        <a href="health.html">Health Records</a>
         <div class="nav-spacer"></div>
-        <a href="login.html" class="logout-btn">Log Out</a>
+        <a href="login.html" class="logout-btn" onclick="localStorage.clear()">Log Out</a>
     </aside>
 
     <main>
         <header>
             <div>
-                <h1>Adoption Management</h1>
-                <p>Logged in as: <span id="user-role">Admin</span></p>
+                <h1>Adoptions & Adopters Management</h1>
+                <p>Logged in as: <span id="user-role">Guest</span></p>
             </div>
         </header>
 
-        <!-- Add New Adopter Form Section (Matched to Reference) -->
-        <section class="form-card">
-            <h3 class="form-card-title">Add New Adopter</h3>
+        <section class="form-card admin-only">
+            <h3 class="form-card-title">Add New Adopter Profile</h3>
             <form action="#" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
@@ -44,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="contact_no">Contact No:</label>
-                        <input type="text" id="contact_no" name="contact_no" placeholder="0917XXXXXXX" required>
+                        <input type="number" maxlength="12" pattern="[0-9]{12}" title="Enter exactly 12 digits" placeholder="0917XXXXXXX" required>
                     </div>
 
                     <div class="form-group">
@@ -75,60 +74,160 @@
             </form>
         </section>
 
-        <!-- Registered Adopters Table -->
-        <h2>Registered Adopters & Applications</h2>
+        <!-- Application Form for Adopters -->
+        <section class="form-card adopter-only">
+            <h3 class="form-card-title">Submit Adoption Application</h3>
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app_pet">Select Pet:</label>
+                        <div class="select-wrapper">
+                            <select id="app_pet" name="app_pet" required>
+                                <option value="P-101">Bruno (Dog)</option>
+                                <option value="P-102">Luna (Cat)</option>
+                                <option value="P-103">Barnaby (Rabbit)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="app_notes">Housing / Lifestyle Notes:</label>
+                        <input type="text" id="app_notes" name="app_notes" placeholder="e.g. Owns a fenced house" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <h2>Adoption Applications Report</h2>
         <table class="data-table">
             <thead>
                 <tr>
-                    <th><input type="checkbox" id="select-all"></th>
-                    <th>Adopter ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Contact</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Status</th>
+                    <th>Application ID</th>
+                    <th>Applicant Name</th>
+                    <th>Contact Information</th>
+                    <th>Selected Pet</th>
+                    <th>Application Date</th>
+                    <th>Application Status</th>
+                    <th class="staff-admin-only">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>Maria</td>
-                    <td>Santos</td>
-                    <td>09171234567</td>
-                    <td>maria.santos@gmail.com</td>
+                    <td>APP-881</td>
+                    <td>Maria Santos</td>
+                    <td>09171234567 | user@test.com</td>
+                    <td>P-101 (Bruno)</td>
+                    <td>2026-10-18</td>
+                    <td><span class="badge badge-warning">Pending Review</span></td>
+                    <td class="staff-admin-only">
+                        <button class="btn" style="padding: 4px 10px; font-size: 0.8rem;">Approve</button>
+                        <button class="btn btn-danger" style="padding: 4px 10px; font-size: 0.8rem;">Reject</button>
+                    </td>
+                </tr>
+                <tr class="other-adopters">
+                    <td>APP-882</td>
+                    <td>John Dela Cruz</td>
+                    <td>09182345678 | john.delacruz@gmail.com</td>
+                    <td>P-102 (Luna)</td>
+                    <td>2026-10-15</td>
+                    <td><span class="badge badge-success">Approved</span></td>
+                    <td class="staff-admin-only">
+                        <button class="btn" style="padding: 4px 10px; font-size: 0.8rem;">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Pet Compatibility Quiz Report</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Applicant Name</th>
+                    <th>Recommended Pet</th>
+                    <th>Compatibility Score</th>
+                    <th>Matching Factors</th>
+                    <th>Recommendation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>User Account (You)</td>
+                    <td>Bruno (Aspin Dog)</td>
+                    <td>94% Match</td>
+                    <td>Spacious yard, active lifestyle, experience with dogs</td>
+                    <td>2026-10-18</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="staff-admin-only">Adopter Profiles Directory</h2>
+        <table class="data-table staff-admin-only">
+            <thead>
+                <tr>
+                    <th>Adopter ID</th>
+                    <th>Adopter Name</th>
+                    <th>Contact Info</th>
+                    <th>Address</th>
+                    <th>Adopter Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ADP-001</td>
+                    <td>Maria Santos</td>
+                    <td>user@test.com</td>
                     <td>Quezon City, Metro Manila</td>
-                    <td><span class="badge badge-success">Active</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>2</td>
-                    <td>John</td>
-                    <td>Dela Cruz</td>
-                    <td>09182345678</td>
-                    <td>john.delacruz@gmail.com</td>
-                    <td>Makati City, Metro Manila</td>
-                    <td><span class="badge badge-success">Active</span></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>3</td>
-                    <td>Angela</td>
-                    <td>Reyes</td>
-                    <td>09193456789</td>
-                    <td>angela.reyes@yahoo.com</td>
-                    <td>Pasig City, Metro Manila</td>
                     <td><span class="badge badge-success">Active</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="table-actions">
-            <button class="btn" onclick="location.reload()">🔄 Refresh</button>
-            <button class="btn btn-danger">🗑️ Delete Selected</button>
+        <h2>Completed Pet Adoption History</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Adoption ID</th>
+                    <th>Pet ID</th>
+                    <th>Pet Name</th>
+                    <th>Adopter Name</th>
+                    <th>Adoption Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ADM-301</td>
+                    <td>P-098</td>
+                    <td>Milo</td>
+                    <td>User Account</td>
+                    <td>2026-10-17</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="table-actions admin-only">
+            <button class="btn btn-danger">Delete Selected Records</button>
         </div>
     </main>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentRole = (localStorage.getItem('currentUserRole') || 'adopter').toLowerCase();
+            document.getElementById('user-role').textContent = currentRole.toUpperCase();
+
+            if (currentRole === 'adopter') {
+                document.querySelectorAll('.admin-only, .staff-admin-only').forEach(el => el.classList.add('rbac-hidden'));
+                document.querySelector('.nav-dashboard').classList.add('rbac-hidden');
+                document.querySelector('.nav-health').classList.add('rbac-hidden');
+            } else if (currentRole === 'staff') {
+                document.querySelectorAll('.admin-only, .adopter-only').forEach(el => el.classList.add('rbac-hidden'));
+            } else {
+                document.querySelectorAll('.adopter-only').forEach(el => el.classList.add('rbac-hidden'));
+            }
+        });
+    </script>
 </body>
 </html>

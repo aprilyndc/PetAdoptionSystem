@@ -3,42 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Adoption Center - QR Pet Profile</title>
+    <title>Pet Adoption Center - QR Pet Profile View</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <aside>
-        <h2>Pet Adoption Portal</h2>
-        <a href="index.html">Dashboard</a>
+        <h2>Pet Portal</h2>
+        <a href="index.html" class="nav-dashboard">Dashboard</a>
         <a href="pets.html">Available Pets</a>
+        <a href="adopters.html">Adopters & Applications</a>
+        <a href="health.html" class="nav-health">Health Records</a>
         <a href="pet_profile.html" class="active">QR Pet Profile</a>
-        <a href="health.html">Health Monitoring</a>
+        <div class="nav-spacer"></div>
+        <a href="login.html" class="logout-btn" onclick="localStorage.clear()">Log Out</a>
     </aside>
 
     <main>
         <header>
-            <h1>QR Pet Profile</h1>
-            
+            <div>
+                <h1>QR Pet Profile View</h1>
+                <p>Logged in as: <span id="user-role">Guest</span></p>
+            </div>
         </header>
 
         <div class="profile-container">
             <div class="qr-box">
-                [QR Code]
+                <svg width="160" height="160" viewBox="0 0 100 100" fill="#2d3748" xmlns="http://www.w3.org/2000/svg">
+                    
+                </svg>
             </div>
 
             <div class="profile-details">
-                <h2>[Pet Name]</h2>
-                <p><strong>Pet ID:</strong> <span>[Insert Pet ID]</span></p>
-                <p><strong>Species:</strong> <span>[Insert Species]</span></p>
-                <p><strong>Breed:</strong> <span>[Insert Breed]</span></p>
-                <p><strong>Age:</strong> <span>[Insert Age]</span></p>
-                <p><strong>Gender:</strong> <span>[Insert Gender]</span></p>
-                <p><strong>Adoption Status:</strong> <span>[Insert Status]</span></p>
-                
+                <h2>Bruno (Pet ID: P-101)</h2>
+                <p><strong>Species:</strong> <span>Dog</span></p>
+                <p><strong>Breed:</strong> <span>Aspin (Askal)</span></p>
+                <p><strong>Age:</strong> <span>1 Year 2 Months</span></p>
+                <p><strong>Gender:</strong> <span>Male</span></p>
+                <p><strong>Health Status:</strong> <span><strong style="color: #16a34a; min-width: auto;">Healthy / Fully Vaccinated</strong></span></p>
+                <p><strong>Vaccination Status:</strong> <span>Up-to-Date (Rabies, DHPP)</span></p>
+                <p><strong>Adoption Status:</strong> <span><strong style="color: #2563eb; min-width: auto;">Available for Adoption</strong></span></p>
+                <p><strong>Special Notes:</strong> <span>Very energetic, gentle with children, basic leash trained.</span></p>
             </div>
         </div>
     </main>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentRole = (localStorage.getItem('currentUserRole') || 'adopter').toLowerCase();
+            document.getElementById('user-role').textContent = currentRole.toUpperCase();
+
+            if (currentRole === 'adopter') {
+                document.querySelector('.nav-dashboard').classList.add('rbac-hidden');
+                document.querySelector('.nav-health').classList.add('rbac-hidden');
+            }
+        });
+    </script>
 </body>
 </html>

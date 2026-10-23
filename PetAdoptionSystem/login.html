@@ -10,38 +10,82 @@
 
     <div class="login-card">
         <div class="login-header">
-            <div class="login-icon">🐾</div>
-            <h2>Pet Adoption Portal</h2>
-            <p>Select your role and sign in to continue</p>
+            <div class="login-icon">PORTAL</div>
+            <h2>Pet Adoption System</h2>
+            <p>Sign in to your account to continue</p>
         </div>
 
-        <form action="index.html" method="GET" class="login-form">
-            <!-- Role Selector Dropdown -->
+        <form id="loginForm" class="login-form">
             <div class="form-group">
-                <label for="role">User Role</label>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username or email" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Login as</label>
                 <div class="select-wrapper">
                     <select id="role" name="role" required>
-                        <option value="Admin">Admin</option>
-                        <option value="Staff">Staff</option>
+                        <option value="">Select your role</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="adopter">Adopter</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Username / Email Field -->
-            <div class="form-group">
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off">
-            </div>
-
-            <!-- Password Field -->
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
-            </div>
-
-            <button type="submit" class="btn btn-block btn-primary">Sign In</button>
+            <button type="submit" class="btn btn-block btn-primary">Login</button>
+            <p id="message" style="text-align: center; font-size: 0.85rem; font-weight: 700; margin-top: 14px; min-height: 20px;"></p>
         </form>
     </div>
 
+    <script>
+        const allowedUsers = [
+            { role: 'adopter', email: 'user@test.com', password: 'user123' },
+            { role: 'admin', email: 'admin@test.com', password: 'admin123' },
+            { role: 'staff', email: 'staff@test.com', password: 'staff123' }
+        ];
+
+        const loginForm = document.getElementById('loginForm');
+        const messageEl = document.getElementById('message');
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value.trim();
+            const roleInput = document.getElementById('role').value;
+
+            const validUser = allowedUsers.find(user => 
+                user.role === roleInput &&
+                user.email.toLowerCase() === usernameInput.toLowerCase() &&
+                user.password === passwordInput
+            );
+
+            if (validUser) {
+                messageEl.style.color = '#16a34a';
+                messageEl.textContent = 'Login successful! Redirecting...';
+
+                // Save current user role
+                localStorage.setItem('currentUserRole', roleInput);
+                localStorage.setItem('currentUserEmail', usernameInput);
+
+                setTimeout(() => {
+                    if (roleInput === 'adopter') {
+                        window.location.href = 'pets.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 800);
+            } else {
+                messageEl.style.color = '#dc2626';
+                messageEl.textContent = 'Invalid credentials or role selected.';
+            }
+        });
+    </script>
 </body>
 </html>
